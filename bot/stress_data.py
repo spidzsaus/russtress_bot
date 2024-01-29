@@ -1,6 +1,8 @@
 from __future__ import annotations
 from random import choice
 
+from bot.utils import hide_yo
+
 
 class StressData:
     stress_table: dict[str, str]
@@ -17,7 +19,7 @@ class StressData:
         word = choice(tuple(self.stress_table.keys()))
         if word in self.specifications:
             word += " " + self.specifications[word]
-        return word
+        return hide_yo(word)
 
     def stress(self, word: str) -> str:
         word = word.lower()
@@ -25,7 +27,9 @@ class StressData:
 
     def is_correct(self, stressed_word: str) -> bool:
         word_key = stressed_word.lower()
-        return self.stress_table[word_key] == stressed_word
+        check = self.stress_table[word_key] == stressed_word
+        yo_check = hide_yo(self.stress_table[word_key]) == stressed_word
+        return check or yo_check
 
     @classmethod
     def from_file(cls, path: str) -> StressData:
@@ -37,5 +41,7 @@ class StressData:
                 if other:
                     specification = " ".join(other)
                     obj.specifications[word_key] = specification
-                obj.stress_table[word.lower()] = word
+                obj.stress_table[word_key] = word
+                if "ё" in word_key:
+                    obj.stress_table[hide_yo(word_key)] = word
         return obj
