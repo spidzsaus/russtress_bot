@@ -10,17 +10,20 @@ class StressData:
         self.stress_table = stress_table
         self.specifications = specifications
 
+    def contains(self, word: str) -> bool:
+        return word.lower() in self.stress_table
+
     def generate_task(self) -> str:
         word = choice(tuple(self.stress_table.keys()))
         if word in self.specifications:
             word += " " + self.specifications[word]
         return word
 
-    def stress(self, word: str):
+    def stress(self, word: str) -> str:
         word = word.lower()
         return self.stress_table[word]
 
-    def is_correct(self, stressed_word: str):
+    def is_correct(self, stressed_word: str) -> bool:
         word_key = stressed_word.lower()
         return self.stress_table[word_key] == stressed_word
 

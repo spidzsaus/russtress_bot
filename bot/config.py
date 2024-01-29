@@ -4,7 +4,7 @@ import logging
 import json
 
 from bot.stress_data import StressData
-
+from bot.language import Language
 
 # Get environment settings from .env file
 load_dotenv()
@@ -17,3 +17,4 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 stress_data = StressData.from_file("data/raw.txt")
+language = Language
