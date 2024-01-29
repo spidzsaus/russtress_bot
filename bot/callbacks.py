@@ -11,6 +11,10 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
 
 async def wildcard(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     word = update.message.text.strip()
+    case_map = list(map(str.isupper, word))
+    if any(case_map[1:]) and case_map[0]:
+        word = word[0].lower() + word[1:]
+
     if stress_data.contains(word):
         if stress_data.is_correct(word):
             task = stress_data.generate_task()
