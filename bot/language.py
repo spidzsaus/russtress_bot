@@ -15,4 +15,6 @@ class Language:
         "знаю, тупо, но\nправильный ответ *{right_answer}*\n\n{task}",
         "увы и ах!\nправильный ответ *{right_answer}*\n\n{task}",
     )
-    wildcard: tuple[str] = ("Что-то не то. Попробуем ещё раз.\n\n{task}",)
+    wildcard: tuple[str] = (
+        "Что-то не то. Возможно, в ответе опечатка. Повтори ещё раз",
+    )

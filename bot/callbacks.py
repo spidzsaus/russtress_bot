@@ -37,6 +37,6 @@ async def wildcard(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     else:
         task = stress_data.generate_task()
         await update.message.reply_text(
-            choice(language.wildcard).format(task=task),
+            choice(language.wildcard),  # .format(task=task),
             parse_mode="Markdown",
         )
