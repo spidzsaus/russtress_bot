@@ -11,6 +11,9 @@ class Task:
     is_variable: bool = False
     variable_id: int = None
 
+    def __str__(self) -> str:
+        return self.text
+
 
 class StressData:
     stress_table: dict[str | tuple[str, int], str]
